@@ -183,7 +183,7 @@ end
 Utilisation:
 * Remplacez ATTACKER_IP par l'IP de votre serveur C2.
 * Exécutez avec:
-`nmap -p 80 --script http-vuln-powershell-inject <target>`
+`nmap -p 80 --script http-vuln-powershell-inject [target]`
 
 Considérations clés:
 * Le service cible doit permettre l'exécution de commandes non validées.
@@ -217,7 +217,7 @@ end
 ```
 
 Utilisation:
-`nmap -p 445 --script smb-harvest <target>`
+`nmap -p 445 --script smb-harvest [target]`
 
 #### 4.2.3. SCRIPT LUA POUR DES EXPLOITS SPÉCIFIQUES AU PROTOCOLE
 
@@ -286,7 +286,7 @@ Pour charger des scripts Lua personnalisés:
 2. Mettez à jour la base de données de scripts de Nmap:
    `nmap --script-updatedb`
 3. Exécutez avec:
-   `nmap -p 443 --script custom-exploit <target>`
+   `nmap -p 443 --script custom-exploit [target]`
 
 Dépannage:
 * Utilisez -d pour la sortie de débogage.
@@ -314,7 +314,7 @@ Approche Technique:
 
 2. Empreinte Digitale de Service SSH:
    Utilisez ssh2-enum-algos pour identifier les algorithmes de chiffrement faibles:
-   `nmap -p22 --script ssh2-enum-algos <target>`
+   `nmap -p22 --script ssh2-enum-algos [target]`
    o Recherchez les chiffrements dépréciés (par exemple, arcfour, 3des-cbc) pour la planification d'exploit.
 
 Point Clé:
@@ -378,7 +378,7 @@ Défi:
 
 Approche Technique:
 1. Identifier les Résolveurs DNS Permissifs:
-   `nmap -sU -p53 --script dns-recursion <target>`
+   `nmap -sU -p53 --script dns-recursion [target]`
    o Recherchez recursion enabled: YES.
 
 2. Encoder et Exfiltrer des Données:
@@ -402,7 +402,7 @@ Approche Technique:
    o --scan-delay 30s: Ralentit les sondes pour se mélanger au trafic légitime.
 
 2. Usurper les Adresses MAC/IP Source:
-   `nmap -e eth1 --spoof-mac 0A:1B:2C:3D:4E:5F -S 192.168.50.100 -p443 <target>`
+   `nmap -e eth1 --spoof-mac 0A:1B:2C:3D:4E:5F -S 192.168.50.100 -p443 [target]`
    o Utilisez une NIC jetable (eth1) et une IP/MAC jetable.
 
 Point Clé:
@@ -414,7 +414,7 @@ Objectif: Extraire les identifiants d'un hôte Linux compromis.
 
 Approche Technique:
 1. Rechercher les Clés SSH et les Fichiers de Configuration:
-   `nmap -p22 --script ssh-publickey-acquisition --script-args ssh.usernames='root,ubuntu' <target>`
+   `nmap -p22 --script ssh-publickey-acquisition --script-args ssh.usernames='root,ubuntu' [target]`
    o Acquiert les clés publiques/privées pour le mouvement latéral.
 
 2. Extraire les Mots de Passe de la Mémoire:
@@ -446,27 +446,27 @@ Point Clé:
 
 | Commande Nmap | Description |
 |------------------|----------------|
-| nmap <target> | Scan d'une Cible Unique: Effectue un scan basique sur la cible spécifiée (adresse IP ou nom d'hôte). |
-| nmap <target1> <target2> | Scan de Multiples Cibles: Scanne plusieurs cibles spécifiées. |
+| nmap [target] | Scan d'une Cible Unique: Effectue un scan basique sur la cible spécifiée (adresse IP ou nom d'hôte). |
+| nmap <target1> [target2] | Scan de Multiples Cibles: Scanne plusieurs cibles spécifiées. |
 | nmap 192.168.1.1-50 | Scan d'une Plage d'IPs: Scanne les adresses IP de 192.168.1.1 à 192.168.1.50. |
 | nmap 192.168.1.0/24 | Scan d'un Sous-réseau Entier: Scanne toutes les 256 adresses IP dans le sous-réseau 192.168.1.0. |
-| nmap -p 22,80,443 <target> | Scan de Ports Spécifiques: Vérifie si les ports 22, 80 et 443 sont ouverts sur la cible. |
-| nmap -p- <target> | Scan de Tous les Ports: Scanne tous les 65 535 ports TCP sur la cible. |
-| nmap -F <target> | Scan Rapide: Scanne rapidement les 100 ports les plus courants. |
-| nmap -sP <target> | Scan Ping: Identifie quels hôtes sont actifs sans scanner les ports. |
-| nmap -sS <target> | Scan SYN: Effectue un scan TCP SYN furtif. |
-| nmap -sU <target> | Scan UDP: Scanne pour les ports UDP ouverts. |
-| nmap -A <target> | Scan Agressif: Active la détection de système d'exploitation, la détection de version, le scan de script et traceroute. |
-| nmap -O <target> | Détection de Système d'Exploitation: Tente de déterminer le système d'exploitation de la cible. |
-| nmap -v <target> | Sortie Verbeuse: Fournit des informations détaillées de scan pendant l'exécution. |
-| nmap -oN output.txt <target> | Sauvegarde la Sortie dans un Fichier: Sauvegarde les résultats du scan dans un format normal dans 'output.txt'. |
-| nmap --open <target> | Affiche Uniquement les Ports Ouverts: Affiche uniquement les ports ouverts dans les résultats du scan. |
+| nmap -p 22,80,443 [target] | Scan de Ports Spécifiques: Vérifie si les ports 22, 80 et 443 sont ouverts sur la cible. |
+| nmap -p- [target] | Scan de Tous les Ports: Scanne tous les 65 535 ports TCP sur la cible. |
+| nmap -F [target] | Scan Rapide: Scanne rapidement les 100 ports les plus courants. |
+| nmap -sP [target] | Scan Ping: Identifie quels hôtes sont actifs sans scanner les ports. |
+| nmap -sS [target] | Scan SYN: Effectue un scan TCP SYN furtif. |
+| nmap -sU [target] | Scan UDP: Scanne pour les ports UDP ouverts. |
+| nmap -A [target] | Scan Agressif: Active la détection de système d'exploitation, la détection de version, le scan de script et traceroute. |
+| nmap -O [target] | Détection de Système d'Exploitation: Tente de déterminer le système d'exploitation de la cible. |
+| nmap -v [target] | Sortie Verbeuse: Fournit des informations détaillées de scan pendant l'exécution. |
+| nmap -oN output.txt [target] | Sauvegarde la Sortie dans un Fichier: Sauvegarde les résultats du scan dans un format normal dans 'output.txt'. |
+| nmap --open [target] | Affiche Uniquement les Ports Ouverts: Affiche uniquement les ports ouverts dans les résultats du scan. |
 | nmap -iL targets.txt | Scan à partir d'une Liste: Lit les cibles à partir du fichier spécifié 'targets.txt'. |
-| nmap -p 1-65535 <target> | Scan de Tous les Ports: Scanne tous les ports de 1 à 65535 sur la cible. |
-| nmap -p U:53,T:22,80 <target> | Scan de Ports TCP et UDP Spécifiques: Scanne le port UDP 53 et les ports TCP 22 et 80. |
-| nmap -6 <target> | Scan IPv6: Scanne une cible IPv6. |
-| nmap -sL <target> | Scan de Liste: Liste les cibles sans envoyer de paquets. |
-| nmap --top-ports 20 <target> | Scan des Ports les Plus Courants: Scanne les 20 ports les plus courants. |
+| nmap -p 1-65535 [target] | Scan de Tous les Ports: Scanne tous les ports de 1 à 65535 sur la cible. |
+| nmap -p U:53,T:22,80 [target] | Scan de Ports TCP et UDP Spécifiques: Scanne le port UDP 53 et les ports TCP 22 et 80. |
+| nmap -6 [target] | Scan IPv6: Scanne une cible IPv6. |
+| nmap -sL [target] | Scan de Liste: Liste les cibles sans envoyer de paquets. |
+| nmap --top-ports 20 [target] | Scan des Ports les Plus Courants: Scanne les 20 ports les plus courants. |
 | nmap --version | Affiche la Version de Nmap: Affiche la version de Nmap installée. |
 | nmap -h | Aide: Affiche le menu d'aide avec toutes les options et descriptions. |
 
@@ -474,120 +474,120 @@ Point Clé:
 
 | Commande Nmap | Description de la Commande Nmap |
 |------------------|-----------------------------|
-| nmap <target> | Scan basique d'une cible. |
-| nmap <target1> <target2> | Scan de plusieurs cibles. |
+| nmap [target] | Scan basique d'une cible. |
+| nmap <target1> [target2] | Scan de plusieurs cibles. |
 | nmap 192.168.1.1-50 | Scan d'une plage d'IPs. |
 | nmap 192.168.1.0/24 | Scan d'un sous-réseau entier. |
-| nmap -p 22,80,443 <target> | Scan de ports spécifiques. |
-| nmap -p- <target> | Scan de tous les 65535 ports. |
-| nmap -sV <target> | Détecter les versions de service. |
-| nmap -O <target> | Détecter le système d'exploitation. |
-| nmap -sT <target> | Effectuer un scan de connexion TCP (connexion complète). |
-| nmap -sS <target> | Effectuer un scan SYN (scan furtif). |
-| nmap -sU <target> | Effectuer un scan UDP. |
-| nmap -A <target> | Conduire un scan agressif (inclut la détection du système d'exploitation, la détection de version, le scan de script et traceroute). |
-| nmap -Pn <target> | Désactiver la découverte d'hôte (ignorer le ping). |
-| nmap -sL <target> | Lister les cibles sans scanner. |
-| nmap -sn <target> | Effectuer un scan ping pour déterminer si les hôtes sont actifs. |
-| nmap -oN output.txt <target> | Sauvegarder la sortie au format normal. |
-| nmap -oX output.xml <target> | Sauvegarder la sortie au format XML. |
-| nmap -oG output.gnmap <target> | Sauvegarder la sortie au format grepable. |
-| nmap --script <script> <target> | Exécuter un script NSE spécifique. |
-| nmap --top-ports <nombre> <target> | Scanner les N ports les plus courants. |
-| nmap --script vuln <target> | Exécuter des scripts de détection de vulnérabilité. |
-| nmap -6 <target> | Effectuer un scan IPv6. |
-| nmap -T4 <target> | Ajuster la vitesse de scan (T0 à T5, T5 étant le plus rapide). |
-| nmap --version-all <target> | Effectuer une détection de version détaillée. |
-| nmap --traceroute <target> | Effectuer un traceroute pour déterminer le chemin réseau. |
-| nmap --script=http-* <target> | Exécuter tous les scripts liés à HTTP. |
-| nmap -sC <target> | Exécuter les scripts de catégorie par défaut. |
-| nmap --script-timeout <temps> <target> | Définir le délai d'attente pour les scripts. |
-| nmap --max-retries <num> <target> | Définir le nombre maximum de tentatives pour les sondes. |
-| nmap --scan-delay <temps> <target> | Définir le délai entre les paquets pendant un scan. |
-| nmap --data-length <longueur> <target> | Ajouter des données aléatoires aux paquets envoyés. |
-| nmap --ttl <valeur> <target> | Définir la valeur TTL (Time-To-Live) pour les paquets. |
-| nmap -D <leurres> <target> | Utiliser des leurres pour masquer la source du scan. |
-| nmap --spoof-mac <adresse MAC/fournisseur> <target> | Usurper l'adresse MAC de la machine de scan. |
+| nmap -p 22,80,443 [target] | Scan de ports spécifiques. |
+| nmap -p- [target] | Scan de tous les 65535 ports. |
+| nmap -sV [target] | Détecter les versions de service. |
+| nmap -O [target] | Détecter le système d'exploitation. |
+| nmap -sT [target] | Effectuer un scan de connexion TCP (connexion complète). |
+| nmap -sS [target] | Effectuer un scan SYN (scan furtif). |
+| nmap -sU [target] | Effectuer un scan UDP. |
+| nmap -A [target] | Conduire un scan agressif (inclut la détection du système d'exploitation, la détection de version, le scan de script et traceroute). |
+| nmap -Pn [target] | Désactiver la découverte d'hôte (ignorer le ping). |
+| nmap -sL [target] | Lister les cibles sans scanner. |
+| nmap -sn [target] | Effectuer un scan ping pour déterminer si les hôtes sont actifs. |
+| nmap -oN output.txt [target] | Sauvegarder la sortie au format normal. |
+| nmap -oX output.xml [target] | Sauvegarder la sortie au format XML. |
+| nmap -oG output.gnmap [target] | Sauvegarder la sortie au format grepable. |
+| nmap --script <script> [target] | Exécuter un script NSE spécifique. |
+| nmap --top-ports <nombre> [target] | Scanner les N ports les plus courants. |
+| nmap --script vuln [target] | Exécuter des scripts de détection de vulnérabilité. |
+| nmap -6 [target] | Effectuer un scan IPv6. |
+| nmap -T4 [target] | Ajuster la vitesse de scan (T0 à T5, T5 étant le plus rapide). |
+| nmap --version-all [target] | Effectuer une détection de version détaillée. |
+| nmap --traceroute [target] | Effectuer un traceroute pour déterminer le chemin réseau. |
+| nmap --script=http-* [target] | Exécuter tous les scripts liés à HTTP. |
+| nmap -sC [target] | Exécuter les scripts de catégorie par défaut. |
+| nmap --script-timeout <temps> [target] | Définir le délai d'attente pour les scripts. |
+| nmap --max-retries <num> [target] | Définir le nombre maximum de tentatives pour les sondes. |
+| nmap --scan-delay <temps> [target] | Définir le délai entre les paquets pendant un scan. |
+| nmap --data-length <longueur> [target] | Ajouter des données aléatoires aux paquets envoyés. |
+| nmap --ttl <valeur> [target] | Définir la valeur TTL (Time-To-Live) pour les paquets. |
+| nmap -D <leurres> [target] | Utiliser des leurres pour masquer la source du scan. |
+| nmap --spoof-mac <adresse MAC/fournisseur> [target] | Usurper l'adresse MAC de la machine de scan. |
 | nmap --exclude <cibles> | Exclure des cibles spécifiques du scan. |
 | nmap --exclude-file <fichier> | Exclure les cibles listées dans un fichier. |
-| nmap --reason <target> | Afficher les raisons des changements d'état d'hôte ou de port. |
-| nmap --defeat-rst-ratelimit <target> | Contourner les mécanismes de limitation de taux RST de la cible. |
-| nmap --append-output <target> | Ajouter les résultats du scan à un fichier de sortie existant. |
-| nmap --badsum <target> | Envoyer des paquets avec des sommes de contrôle invalides. |
-| nmap -sN <target> | Effectuer un scan Null (aucun drapeau défini). |
-| nmap -sF <target> | Effectuer un scan FIN (drapeau FIN défini). |
-| nmap -sX <target> | Effectuer un scan Xmas (drapeaux FIN, PSH et URG définis). |
-| nmap --script=ftp-anon <target> | Vérifier la connexion FTP anonyme. |
-| nmap --script=dns-cache-snoop <target> | Vérifier les vulnérabilités de reniflage de cache DNS. |
-| nmap --script=http-stored-xss <target> | Vérifier les vulnérabilités XSS stockées. |
-| nmap --script=ssl-enum-ciphers <target> | Énumérer les suites de chiffrement SSL/TLS. |
-| nmap --script=http-robots.txt <target> | Récupérer et analyser les fichiers robots.txt. |
-| nmap --script=http-sitemap-generator <target> | Générer des plans de site pour les applications web. |
-| nmap -PE <target> | Utiliser les requêtes d'écho ICMP pour la découverte d'hôte. |
-| nmap -PR <target> | Utiliser les requêtes ARP pour la découverte d'hôte sur les réseaux locaux. |
-| nmap --script=http-waf-detect <target> | Détecter les pare-feu d'applications Web. |
-| nmap --randomize-hosts <target> | Randomiser l'ordre des hôtes scannés. |
-| nmap --min-hostgroup <nombre> <target> | Définir le nombre minimum d'hôtes dans un groupe de scan. |
-| nmap --max-hostgroup <nombre> <target> | Définir le nombre maximum d'hôtes dans un groupe de scan. |
-| nmap --min-parallelism <nombre> <target> | Définir le nombre minimum de sondes parallèles. |
-| nmap --max-parallelism <nombre> <target> | Définir le nombre maximum de sondes parallèles. |
-| nmap -sW <target> | Effectuer un scan Window TCP. |
-| nmap -sM <target> | Effectuer un scan TCP Maimon. |
-| nmap -sZ <target> | Effectuer un scan SCTP COOKIE ECHO. |
-| nmap --unprivileged <target> | Exécuter Nmap en mode non privilégié. |
-| nmap --send-ip <target> | Utiliser des paquets IP bruts au lieu de protocoles de niveau supérieur. |
-| nmap --disable-arp-ping <target> | Désactiver le ping ARP pendant la découverte d'hôte. |
-| nmap --ip-options <options> <target> | Utiliser des options IP spécifiques dans les paquets. |
-| nmap --script=smb-vuln-ms08-067 <target> | Vérifier les vulnérabilités SMB comme MS08-067. |
-| nmap --script=http-sql-injection <target> | Détecter les vulnérabilités d'injection SQL. |
-| nmap --script=http-userdir-enum <target> | Énumérer les répertoires utilisateur sur les serveurs HTTP. |
-| nmap --script=http-shellshock <target> | Vérifier la vulnérabilité Shellshock. |
-| nmap --script=mysql-empty-password <target> | Vérifier les vulnérabilités de mot de passe vide dans MySQL. |
+| nmap --reason [target] | Afficher les raisons des changements d'état d'hôte ou de port. |
+| nmap --defeat-rst-ratelimit [target] | Contourner les mécanismes de limitation de taux RST de la cible. |
+| nmap --append-output [target] | Ajouter les résultats du scan à un fichier de sortie existant. |
+| nmap --badsum [target] | Envoyer des paquets avec des sommes de contrôle invalides. |
+| nmap -sN [target] | Effectuer un scan Null (aucun drapeau défini). |
+| nmap -sF [target] | Effectuer un scan FIN (drapeau FIN défini). |
+| nmap -sX [target] | Effectuer un scan Xmas (drapeaux FIN, PSH et URG définis). |
+| nmap --script=ftp-anon [target] | Vérifier la connexion FTP anonyme. |
+| nmap --script=dns-cache-snoop [target] | Vérifier les vulnérabilités de reniflage de cache DNS. |
+| nmap --script=http-stored-xss [target] | Vérifier les vulnérabilités XSS stockées. |
+| nmap --script=ssl-enum-ciphers [target] | Énumérer les suites de chiffrement SSL/TLS. |
+| nmap --script=http-robots.txt [target] | Récupérer et analyser les fichiers robots.txt. |
+| nmap --script=http-sitemap-generator [target] | Générer des plans de site pour les applications web. |
+| nmap -PE [target] | Utiliser les requêtes d'écho ICMP pour la découverte d'hôte. |
+| nmap -PR [target] | Utiliser les requêtes ARP pour la découverte d'hôte sur les réseaux locaux. |
+| nmap --script=http-waf-detect [target] | Détecter les pare-feu d'applications Web. |
+| nmap --randomize-hosts [target] | Randomiser l'ordre des hôtes scannés. |
+| nmap --min-hostgroup <nombre> [target] | Définir le nombre minimum d'hôtes dans un groupe de scan. |
+| nmap --max-hostgroup <nombre> [target] | Définir le nombre maximum d'hôtes dans un groupe de scan. |
+| nmap --min-parallelism <nombre> [target] | Définir le nombre minimum de sondes parallèles. |
+| nmap --max-parallelism <nombre> [target] | Définir le nombre maximum de sondes parallèles. |
+| nmap -sW [target] | Effectuer un scan Window TCP. |
+| nmap -sM [target] | Effectuer un scan TCP Maimon. |
+| nmap -sZ [target] | Effectuer un scan SCTP COOKIE ECHO. |
+| nmap --unprivileged [target] | Exécuter Nmap en mode non privilégié. |
+| nmap --send-ip [target] | Utiliser des paquets IP bruts au lieu de protocoles de niveau supérieur. |
+| nmap --disable-arp-ping [target] | Désactiver le ping ARP pendant la découverte d'hôte. |
+| nmap --ip-options <options> [target] | Utiliser des options IP spécifiques dans les paquets. |
+| nmap --script=smb-vuln-ms08-067 [target] | Vérifier les vulnérabilités SMB comme MS08-067. |
+| nmap --script=http-sql-injection [target] | Détecter les vulnérabilités d'injection SQL. |
+| nmap --script=http-userdir-enum [target] | Énumérer les répertoires utilisateur sur les serveurs HTTP. |
+| nmap --script=http-shellshock [target] | Vérifier la vulnérabilité Shellshock. |
+| nmap --script=mysql-empty-password [target] | Vérifier les vulnérabilités de mot de passe vide dans MySQL. |
 
 ### 6.3. POUR LES RED TEAMERS
 
 | Commande Nmap | Description |
 |---------------|-------------|
-| nmap -sS -T0 <target> | Scan SYN Furtif avec Timing Lent: Effectue un scan SYN avec le modèle de timing le plus lent pour minimiser la détection. |
-| nmap -sN -T0 <target> | Scan Null avec Timing Lent: Envoie des paquets sans aucun drapeau défini, tentant de contourner certains pare-feu et filtres de paquets. |
-| nmap -sF -T0 <target> | Scan FIN avec Timing Lent: Envoie des paquets avec seulement le drapeau FIN défini, utile pour évader certains systèmes de détection d'intrusion. |
-| nmap -sX -T0 <target> | Scan Xmas avec Timing Lent: Envoie des paquets avec les drapeaux FIN, PSH et URG définis, visant à exploiter des comportements spécifiques de la pile TCP. |
-| nmap -sI <zombie_ip> <target> | Scan Idle: Utilise un hôte tiers pour envoyer des paquets, masquant l'adresse IP de l'attaquant. |
-| nmap -D RND:10 <target> | Scan Leurre: Génère du trafic à partir de multiples adresses IP usurpées pour obscurcir la vraie source du scan. |
-| nmap -f <target> | Scan Fragmentation: Envoie des paquets fragmentés pour évader l'inspection de paquets en divisant la charge utile. |
-| nmap --data-length 50 <target> | Longueur de Paquet Personnalisée: Ajoute des données supplémentaires aux paquets pour modifier leur taille, contournant potentiellement les filtres de sécurité. |
-| nmap --spoof-mac 00:11:22:33:44:55 <target> | Usurpation d'Adresse MAC: Change l'adresse MAC source du système de scan pour l'adresse spécifiée. |
-| nmap --badsum <target> | Scan avec Somme de Contrôle Incorrecte: Envoie des paquets avec des sommes de contrôle incorrectes; les systèmes de pile TCP/IP non conformes peuvent répondre, aidant à la détection. |
-| nmap --script firewall-bypass <target> | Script de Contournement de Pare-feu: Tente de détecter et d'exploiter les mauvaises configurations de règles de pare-feu. |
-| nmap --script smb-vuln-* <target> | Scripts de Vulnérabilité SMB: Exécute une suite de scripts ciblant les vulnérabilités SMB, comme smb-vuln-ms17-010. |
-| nmap --script http-sql-injection <target> | Script d'Injection SQL HTTP: Scanne les vulnérabilités d'injection SQL dans les applications web. |
-| nmap --script http-brute <target> | Script de Force Brute HTTP: Effectue un audit de mot de passe par force brute contre l'authentification HTTP. |
-| nmap --script ftp-anon,ftp-brute <target> | Scripts FTP Anonyme et de Force Brute: Vérifie l'accès FTP anonyme et tente une connexion par force brute. |
-| nmap --script ssh-brute <target> | Script de Force Brute SSH: Tente de deviner les identifiants de connexion SSH par force brute. |
-| nmap --script dns-zone-transfer <target> | Script de Transfert de Zone DNS: Tente d'effectuer un transfert de zone DNS pour récupérer tous les enregistrements DNS pour un domaine. |
-| nmap --script snmp-brute <target> | Script de Force Brute SNMP: Tente de deviner les chaînes de communauté SNMP par force brute. |
-| nmap --script ipidseq <target> | Script de Prédiction de Séquence IPID: Vérifie les séquences IPID prévisibles, qui peuvent être utiles pour les scans idle. |
-| nmap --script broadcast-ping <target> | Script de Découverte Réseau: Envoie des pings de diffusion sur un réseau pour découvrir les hôtes actifs. |
-| nmap --script vuln <target> | Scan de Vulnérabilité: Exécute une suite de scripts de détection de vulnérabilité contre la cible. |
-| nmap --script exploit <target> | Scripts d'Exploitation: Exécute les scripts d'exploitation disponibles contre la cible. |
-| nmap --script backdoor <target> | Scripts de Détection de Backdoor: Scanne les backdoors connues sur le système cible. |
-| nmap --script malware <target> | Scripts de Détection de Malware: Vérifie les indications d'infections malware sur la cible. |
-| nmap --script external <target> | Scripts de Collecte d'Information Externe: Tire parti de sources externes pour rassembler des informations sur la cible. |
-| nmap --script discovery <target> | Scripts de Découverte: Exécute des scripts visant à découvrir des informations supplémentaires sur le réseau ou l'hôte. |
-| nmap --script intrusive <target> | Scripts Intrusifs: Exécute des scripts qui peuvent être perturbateurs ou causer des interruptions de service; à utiliser avec prudence. |
-| nmap --script safe <target> | Scripts Sûrs: Exécute des scripts jugés sûrs et peu susceptibles de causer des perturbations. |
-| nmap --script dos <target> | Scripts de Déni de Service: Tente d'identifier ou d'exploiter des vulnérabilités de déni de service; à utiliser avec une extrême prudence. |
-| nmap --script auth <target> | Scripts de Contournement d'Authentification: Vérifie les vulnérabilités de contournement d'authentification. |
-| nmap --script broadcast <target> | Scripts de Diffusion: Envoie des paquets de diffusion pour découvrir des hôtes et des services sur un réseau. |
-| nmap --script brute <target> | Scripts de Force Brute: Effectue un audit de mot de passe par force brute contre divers services. |
-| nmap --script default <target> | Scripts par Défaut: Exécute un ensemble basique de scripts considérés utiles pour la reconnaissance générale. |
-| nmap --script discovery <target> | Scripts de Découverte: Rassemble des informations sur la cible, comme les ports ouverts et les services. |
-| nmap --script dos <target> | Scripts de Déni de Service: Teste les vulnérabilités DoS; peut être perturbateur. |
-| nmap --script exploit <target> | Scripts d'Exploitation: Tente d'exploiter des vulnérabilités sur la cible. |
-| nmap --script external <target> | Scripts de Collecte d'Information Externe: Utilise des services tiers pour rassembler des informations sur la cible. |
-| nmap --script fuzzer <target> | Scripts de Fuzzing: Envoie des données inattendues ou aléatoires aux services pour identifier des vulnérabilités potentielles. |
-| nmap --script intrusive <target> | Scripts Intrusifs: Exécute des scripts qui peuvent avoir des effets adverses; à utiliser avec prudence. |
-| nmap --script malware <target> | Scripts de Détection de Malware: Vérifie les signes de malware sur le système cible. |
-| nmap --script safe <target> | Scripts Sûrs: Exécute des scripts non intrusifs peu susceptibles de causer des dommages. |
-| nmap --script version <target> | Scripts de Détection de Version: Détermine les versions de service fonctionnant sur les ports ouverts. |
-| nmap --script vuln <target> | Scripts de Détection de Vulnérabilité: Identifie les vulnérabilités connues sur la cible. |
+| nmap -sS -T0 [target] | Scan SYN Furtif avec Timing Lent: Effectue un scan SYN avec le modèle de timing le plus lent pour minimiser la détection. |
+| nmap -sN -T0 [target] | Scan Null avec Timing Lent: Envoie des paquets sans aucun drapeau défini, tentant de contourner certains pare-feu et filtres de paquets. |
+| nmap -sF -T0 [target] | Scan FIN avec Timing Lent: Envoie des paquets avec seulement le drapeau FIN défini, utile pour évader certains systèmes de détection d'intrusion. |
+| nmap -sX -T0 [target] | Scan Xmas avec Timing Lent: Envoie des paquets avec les drapeaux FIN, PSH et URG définis, visant à exploiter des comportements spécifiques de la pile TCP. |
+| nmap -sI <zombie_ip> [target] | Scan Idle: Utilise un hôte tiers pour envoyer des paquets, masquant l'adresse IP de l'attaquant. |
+| nmap -D RND:10 [target] | Scan Leurre: Génère du trafic à partir de multiples adresses IP usurpées pour obscurcir la vraie source du scan. |
+| nmap -f [target] | Scan Fragmentation: Envoie des paquets fragmentés pour évader l'inspection de paquets en divisant la charge utile. |
+| nmap --data-length 50 [target] | Longueur de Paquet Personnalisée: Ajoute des données supplémentaires aux paquets pour modifier leur taille, contournant potentiellement les filtres de sécurité. |
+| nmap --spoof-mac 00:11:22:33:44:55 [target] | Usurpation d'Adresse MAC: Change l'adresse MAC source du système de scan pour l'adresse spécifiée. |
+| nmap --badsum [target] | Scan avec Somme de Contrôle Incorrecte: Envoie des paquets avec des sommes de contrôle incorrectes; les systèmes de pile TCP/IP non conformes peuvent répondre, aidant à la détection. |
+| nmap --script firewall-bypass [target] | Script de Contournement de Pare-feu: Tente de détecter et d'exploiter les mauvaises configurations de règles de pare-feu. |
+| nmap --script smb-vuln-* [target] | Scripts de Vulnérabilité SMB: Exécute une suite de scripts ciblant les vulnérabilités SMB, comme smb-vuln-ms17-010. |
+| nmap --script http-sql-injection [target] | Script d'Injection SQL HTTP: Scanne les vulnérabilités d'injection SQL dans les applications web. |
+| nmap --script http-brute [target] | Script de Force Brute HTTP: Effectue un audit de mot de passe par force brute contre l'authentification HTTP. |
+| nmap --script ftp-anon,ftp-brute [target] | Scripts FTP Anonyme et de Force Brute: Vérifie l'accès FTP anonyme et tente une connexion par force brute. |
+| nmap --script ssh-brute [target] | Script de Force Brute SSH: Tente de deviner les identifiants de connexion SSH par force brute. |
+| nmap --script dns-zone-transfer [target] | Script de Transfert de Zone DNS: Tente d'effectuer un transfert de zone DNS pour récupérer tous les enregistrements DNS pour un domaine. |
+| nmap --script snmp-brute [target] | Script de Force Brute SNMP: Tente de deviner les chaînes de communauté SNMP par force brute. |
+| nmap --script ipidseq [target] | Script de Prédiction de Séquence IPID: Vérifie les séquences IPID prévisibles, qui peuvent être utiles pour les scans idle. |
+| nmap --script broadcast-ping [target] | Script de Découverte Réseau: Envoie des pings de diffusion sur un réseau pour découvrir les hôtes actifs. |
+| nmap --script vuln [target] | Scan de Vulnérabilité: Exécute une suite de scripts de détection de vulnérabilité contre la cible. |
+| nmap --script exploit [target] | Scripts d'Exploitation: Exécute les scripts d'exploitation disponibles contre la cible. |
+| nmap --script backdoor [target] | Scripts de Détection de Backdoor: Scanne les backdoors connues sur le système cible. |
+| nmap --script malware [target] | Scripts de Détection de Malware: Vérifie les indications d'infections malware sur la cible. |
+| nmap --script external [target] | Scripts de Collecte d'Information Externe: Tire parti de sources externes pour rassembler des informations sur la cible. |
+| nmap --script discovery [target] | Scripts de Découverte: Exécute des scripts visant à découvrir des informations supplémentaires sur le réseau ou l'hôte. |
+| nmap --script intrusive [target] | Scripts Intrusifs: Exécute des scripts qui peuvent être perturbateurs ou causer des interruptions de service; à utiliser avec prudence. |
+| nmap --script safe [target] | Scripts Sûrs: Exécute des scripts jugés sûrs et peu susceptibles de causer des perturbations. |
+| nmap --script dos [target] | Scripts de Déni de Service: Tente d'identifier ou d'exploiter des vulnérabilités de déni de service; à utiliser avec une extrême prudence. |
+| nmap --script auth [target] | Scripts de Contournement d'Authentification: Vérifie les vulnérabilités de contournement d'authentification. |
+| nmap --script broadcast [target] | Scripts de Diffusion: Envoie des paquets de diffusion pour découvrir des hôtes et des services sur un réseau. |
+| nmap --script brute [target] | Scripts de Force Brute: Effectue un audit de mot de passe par force brute contre divers services. |
+| nmap --script default [target] | Scripts par Défaut: Exécute un ensemble basique de scripts considérés utiles pour la reconnaissance générale. |
+| nmap --script discovery [target] | Scripts de Découverte: Rassemble des informations sur la cible, comme les ports ouverts et les services. |
+| nmap --script dos [target] | Scripts de Déni de Service: Teste les vulnérabilités DoS; peut être perturbateur. |
+| nmap --script exploit [target] | Scripts d'Exploitation: Tente d'exploiter des vulnérabilités sur la cible. |
+| nmap --script external [target] | Scripts de Collecte d'Information Externe: Utilise des services tiers pour rassembler des informations sur la cible. |
+| nmap --script fuzzer [target] | Scripts de Fuzzing: Envoie des données inattendues ou aléatoires aux services pour identifier des vulnérabilités potentielles. |
+| nmap --script intrusive [target] | Scripts Intrusifs: Exécute des scripts qui peuvent avoir des effets adverses; à utiliser avec prudence. |
+| nmap --script malware [target] | Scripts de Détection de Malware: Vérifie les signes de malware sur le système cible. |
+| nmap --script safe [target] | Scripts Sûrs: Exécute des scripts non intrusifs peu susceptibles de causer des dommages. |
+| nmap --script version [target] | Scripts de Détection de Version: Détermine les versions de service fonctionnant sur les ports ouverts. |
+| nmap --script vuln [target] | Scripts de Détection de Vulnérabilité: Identifie les vulnérabilités connues sur la cible. |
