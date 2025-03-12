@@ -445,7 +445,7 @@ Point Clé:
 ### 6.1. BASES
 
 | Commande Nmap | Description |
-|---------------|-------------|
+|------------------|----------------|
 | nmap <target> | Scan d'une Cible Unique: Effectue un scan basique sur la cible spécifiée (adresse IP ou nom d'hôte). |
 | nmap <target1> <target2> | Scan de Multiples Cibles: Scanne plusieurs cibles spécifiées. |
 | nmap 192.168.1.1-50 | Scan d'une Plage d'IPs: Scanne les adresses IP de 192.168.1.1 à 192.168.1.50. |
@@ -473,7 +473,7 @@ Point Clé:
 ### 6.2. AVANCÉ
 
 | Commande Nmap | Description de la Commande Nmap |
-|---------------|--------------------------|
+|------------------|-----------------------------|
 | nmap <target> | Scan basique d'une cible. |
 | nmap <target1> <target2> | Scan de plusieurs cibles. |
 | nmap 192.168.1.1-50 | Scan d'une plage d'IPs. |
